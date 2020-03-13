@@ -7,15 +7,9 @@ class orm {
 
     // constructor creates the connection object
     // using the mysql module
-    constructor(database_name) {
+    constructor(connection, database_name) {
         this.database_name = database_name;
-        this.connection = mysql.createConnection({
-            host: 'localhost',
-            port: 3306,
-            password: 'password1',
-            user: 'root',
-            database: this.database_name
-        });
+        this.connection = connection;
     }
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -107,6 +101,10 @@ class orm {
         return this.db_query(query, null);
     }
 
+    // ++++++
+    // SELECT
+    // ++++++
+
     // all rows from table
     select_all_from_table(table_name) {
         const query = 'select * from ??';
@@ -128,6 +126,14 @@ class orm {
         let values = [table_name, colum_name];
         if (value != null) values.push(value);
         return this.db_query(query, values);
+    }
+
+    // ++++++
+    // INSERT
+    // ++++++
+
+    insert_values_into_table(values, table_name) {
+        
     }
 
     // +++++
